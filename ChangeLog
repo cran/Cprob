@@ -1,0 +1,18 @@
+2009-11-10 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
+
+	* cpf: cpf returns a new item strata
+
+	* plot.cpf, lines.cpf: mark.time is now FALSE by default.
+	strata (cf. change in cpf) is used for legend labels when 
+	none are provided.
+
+	* [.cpf: Rewritten
+
+2009-7-15 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
+
+	* New lines and '[' methods for cpf objects
+
+	* xyplot.cpfpo: Replaces plot.cpfpo
+
+	* pseudocpf: New function to compute pseudo values. 
+	New methods created (print and summary).

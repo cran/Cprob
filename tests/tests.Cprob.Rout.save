@@ -1,0 +1,254 @@
+
+R version 2.10.0 (2009-10-26)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> require(Cprob)
+Loading required package: Cprob
+Loading required package: prodlim
+Loading required package: KernSmooth
+KernSmooth 2.23 loaded
+Copyright M. P. Wand 1997-2009
+Loading required package: survival
+Loading required package: splines
+Loading required package: tpr
+Loading required package: lgtdl
+Loading required package: Matrix
+Loading required package: lattice
+Loading required package: geepack
+> 
+> ### test 1
+> data(mgus)
+> 
+> aa <- cpf(Hist(time, ev) ~ 1, mgus)
+> 
+> aa
+Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
+
+Number of observations:  241 
+
+    Cause n.event
+        1      59
+    other     130
+ censored      52
+> 
+> summary(aa)
+Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
+
+	 
+         time n.risk n.event n.event.other         cp       var.cp      lower
+1    0.000000    241       0             2 0.00000000 0.0000000000 0.00000000
+58   6.105407    176       1             0 0.07894737 0.0003865789 0.04041132
+115 11.964408    117       0             1 0.26114650 0.0012493659 0.19186889
+172 19.668720     60       1             0 0.45759193 0.0022183410 0.36527907
+230 34.105407      1       0             0 0.82604991           NA         NA
+        upper
+1   0.0000000
+58  0.1174834
+115 0.3304241
+172 0.5499048
+230        NA
+
+> 
+> aa[]
+Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
+
+Number of observations:  241 
+
+    Cause n.event
+        1      59
+    other     130
+ censored      52
+Warning message:
+In `[.cpf`(aa, ) : 'cpf' has only 1 conditional probability curve
+> 
+> all.equal(aa[]$cp, aa$cp)
+[1] TRUE
+Warning message:
+In `[.cpf`(aa, ) : 'cpf' has only 1 conditional probability curve
+> 
+> all.equal(aa[1]$cp, aa$cp)
+[1] TRUE
+Warning message:
+In `[.cpf`(aa, 1) : 'cpf' has only 1 conditional probability curve
+> 
+> aa[c(1, 2)]
+Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
+
+Number of observations:  241 
+
+    Cause n.event
+        1      59
+    other     130
+ censored      52
+Warning message:
+In `[.cpf`(aa, c(1, 2)) : 'cpf' has only 1 conditional probability curve
+> 
+> ### test 2
+> mgus$A <- ifelse(mgus$age < 64, 0, 1)
+> 
+> bb <- cpf(Hist(time, ev) ~ A, mgus)
+> 
+> bb
+Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
+
+Number of observations:  241 
+
+Covariate:  A 
+	levels:  0 1 
+
+Two sample test: 
+	z:  -0.1990219 
+	p:  0.8422456 
+
+    Cause n.event
+        1      59
+    other     130
+ censored      52
+> 
+> summary(bb)
+Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
+
+Two sample test: 
+	z:  -0.1990219 
+	p:  0.8422456 
+
+	 A = 0 
+           time n.risk n.event n.event.other        cp         var      lower
+1    0.08761123    120       0             1 0.0000000 0.000000000 0.00000000
+30   7.83299110     91       1             0 0.1346154 0.001145166 0.06828962
+59  16.77207392     61       1             0 0.3478261 0.002546966 0.24891165
+88  21.52498289     31       0             0 0.4434477 0.002976608 0.33651538
+118 34.10540726      1       0             0 0.7949134          NA         NA
+        upper
+1   0.0000000
+30  0.2009411
+59  0.4467405
+88  0.5503800
+118        NA
+
+	 A = 1 
+         time n.risk n.event n.event.other         cp          var        lower
+1    0.000000    121       0             2 0.00000000 0.0000000000  0.000000000
+29   4.969199     87       0             1 0.03370787 0.0003745327 -0.004223017
+58   8.832307     58       0             1 0.13636364 0.0018475294  0.052118707
+86  15.195072     30       0             1 0.35555556 0.0054491248  0.210874567
+115 23.811088      1       0             1 1.00000000          Inf         -Inf
+         upper
+1   0.00000000
+29  0.07163875
+58  0.22060857
+86  0.50023654
+115        Inf
+
+> 
+> all.equal(bb[]$cp, bb$cp)
+[1] TRUE
+> all.equal(bb[c(1, 2)]$cp, bb$cp)
+[1] TRUE
+> 
+> all.equal(bb[1]$cp, bb$cp[1:bb$size.strata[1]])
+[1] TRUE
+> 
+> ### test 3
+> fit <- cpfpo(Hist(time, ev) ~ age + creat, mgus,
++              tis=seq(10, 30, 0.3), w=rep(1,67))
+> 
+> fit
+Test for non-significant effect 
+                  stat     pvalue
+(Intercept) -2.3812434 0.01725431
+age          2.1493465 0.03160695
+creat        0.2566941 0.79741492
+
+ Test for constant fit 
+                   coef   exp.coef    SE.coef      stat       pvalue
+(Intercept) -3.17296435 0.04187927 1.33248215  3.726286 0.0001943217
+age          0.04224328 1.04314823 0.01965401 -1.815110 0.0695070043
+creat        0.19314357 1.21305693 0.75242697 -0.305947 0.7596449967
+> 
+> ### test 4
+> time <- c(rep(2, 20), rep(3, 60), rep(4, 20))
+> ev <- c(rep(1, 20), rep(2, 60), rep(0, 20))
+> data <- data.frame(time, ev)
+> 
+> a <- predict(cpf(Hist(time, ev) ~ 1, data), 3)$cp
+> all.equal(a, 1/2)
+[1] TRUE
+> 
+> ### test 5
+> cutoffs <- quantile(mgus$time, probs = seq(0, 1, 0.05))[-1]
+> 
+> fit1 <- pseudocpf(Hist(time, ev) ~ age + creat, mgus, id = id, timep = cutoffs,
++                  corstr = "independence", scale.value = TRUE)
+> 
+> fit2 <- pseudocpf(Hist(time, ev) ~ age + creat, mgus, id = id, timep = cutoffs,
++                  corstr = "independence", scale.value = TRUE, jack = TRUE)
+> 
+> fit1
+Call:
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
+    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE)
+
+             coef exp(coef)   se(coef)          z          p
+age    0.03787388 1.0386002 0.01757588  2.1548779 0.03117139
+creat -0.11270506 0.8934141 0.15786668 -0.7139256 0.47527320
+
+> fit2
+Call:
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
+    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE, 
+    jack = TRUE)
+
+             coef exp(coef)   se(coef)          z          p
+age    0.03787388 1.0386002 0.01682105  2.2515763 0.02434906
+creat -0.11270506 0.8934141 0.15803655 -0.7131582 0.47574787
+
+> 
+> summary(fit1)
+Call:
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
+    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE)
+
+          coef exp(coef) se(coef)      w Pr(>|w|)  
+age    0.03787   1.03860  0.01758  2.155   0.0312 *
+creat -0.11271   0.89341  0.15787 -0.714   0.4753  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+      exp(coef) exp(-coef) lower .95 upper .95
+age      1.0386     0.9628    1.0034     1.075
+creat    0.8934     1.1193    0.6557     1.217
+
+> summary(fit2)
+Call:
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
+    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE, 
+    jack = TRUE)
+
+          coef exp(coef) se(coef)      w Pr(>|w|)  
+age    0.03787   1.03860  0.01682  2.252   0.0243 *
+creat -0.11271   0.89341  0.15804 -0.713   0.4757  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+      exp(coef) exp(-coef) lower .95 upper .95
+age      1.0386     0.9628    1.0034     1.075
+creat    0.8934     1.1193    0.6557     1.217
+
+>        
+> 
