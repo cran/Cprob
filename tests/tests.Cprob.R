@@ -60,3 +60,17 @@ fit2
 summary(fit1)
 summary(fit2)
        
+
+### test 6: playing with cens.conde
+mm <- mgus
+mm$ev <- ifelse(mm$ev == 0, 4, mm$ev)
+
+test1 <- pseudocpf(Hist(time, ev, cens.code = "4") ~ age + creat, mm, id = id, timep = cutoffs,
+                   corstr = "independence", scale.value = TRUE)
+
+test2 <- cpfpo(Hist(time, ev, cens.code = "4") ~ age + creat, mm,
+               tis=seq(10, 30, 0.3), w=rep(1,67))
+
+test2$alpha == fit$alpha
+
+summary(test1)$coef == summary(fit1)$coef

@@ -22,18 +22,21 @@ pseudocpf <- function(formula, data, id, subset, na.action, timepoints,
     time <- response[, "time"]
     states <- attr(response, "states")
     id <- model.extract(m, "id")
-    event <- factor(event, order = TRUE)
-    levels(event) <- c(attr(response, "cens.code"), states)
+    event <- factor(event)
+    cc <- attr(response, "cens.code")
+    levels(event) <- c(cc, states)
     daten <- data.frame(id, event, time)
     tmax <- max(daten$time) + 10^-3
     n <- nrow(daten)
     nt <- length(timepoints)
     psd <- matrix(0, nrow = n * nt, ncol = 3)
-    ref <- matrix(predict(cpf(Hist(time, event), daten, failcode = failcode), timepoints)$cp,
+    ref <- matrix(predict(cpf(Hist(time, event, cens.code = cc) ~ 1, daten,
+                              failcode = failcode), timepoints)$cp,
                   ncol = 1, nrow = nt)
     ref <- apply(ref, 2, rep, n)
     temp <- lapply(seq_len(n), function(i) {
-        matrix(predict(cpf(Hist(time, event), daten[-i, ], failcode = failcode), timepoints)$cp,
+        matrix(predict(cpf(Hist(time, event, cens.code = cc) ~ 1, daten[-i, ],
+                           failcode = failcode), timepoints)$cp,
                ncol = 1, nrow = nt)
     })
     temp <- do.call(rbind, temp)

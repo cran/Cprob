@@ -1,3 +1,12 @@
+2010-02-11 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
+
+	* cpf: Code modifications to handle the changes made to 
+	the output of prodlim
+
+	* pseudocpf: event not transformed to an ordered factor, just factor,
+
+	* test file: new tests on pseuodcpf and cpfpo
+
 2009-11-10 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
 
 	* cpf: cpf returns a new item strata
