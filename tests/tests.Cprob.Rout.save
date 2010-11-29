@@ -1,6 +1,6 @@
 
-R version 2.10.1 (2009-12-14)
-Copyright (C) 2009 The R Foundation for Statistical Computing
+R version 2.11.1 (2010-05-31)
+Copyright (C) 2010 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -27,10 +27,46 @@ Loading required package: survival
 Loading required package: splines
 Loading required package: tpr
 Loading required package: lgtdl
-Loading required package: Matrix
 Loading required package: lattice
 Loading required package: geepack
 Loading required package: doBy
+Loading required package: contrast
+Loading required package: Design
+Loading required package: Hmisc
+
+Attaching package: 'Hmisc'
+
+The following object(s) are masked from 'package:survival':
+
+    untangle.specials
+
+The following object(s) are masked from 'package:base':
+
+    format.pval, round.POSIXt, trunc.POSIXt, units
+
+Design library by Frank E Harrell Jr
+
+Type library(help='Design'), ?DesignOverview, or ?Design.Overview')
+to see overall documentation.
+
+
+Attaching package: 'Design'
+
+The following object(s) are masked from 'package:Hmisc':
+
+    strgraphwrap
+
+The following object(s) are masked from 'package:survival':
+
+    Surv
+
+
+Attaching package: 'contrast'
+
+The following object(s) are masked from 'package:Design':
+
+    contrast
+
 > 
 > ### test 1
 > data(mgus)
@@ -177,10 +213,10 @@ age          2.1493465 0.03160695
 creat        0.2566941 0.79741492
 
  Test for constant fit 
-                   coef   exp.coef    SE.coef      stat       pvalue
-(Intercept) -3.17296435 0.04187927 1.33248215  3.726286 0.0001943217
-age          0.04224328 1.04314823 0.01965401 -1.815110 0.0695070043
-creat        0.19314357 1.21305693 0.75242697 -0.305947 0.7596449967
+                   coef   exp.coef    SE.coef       stat    pvalue
+(Intercept) -3.17296435 0.04187927 1.33248215  0.2465093 0.8052880
+age          0.04224328 1.04314823 0.01965401 -0.6819222 0.4952882
+creat        0.19314357 1.21305693 0.75242697  0.1301027 0.8964852
 > 
 > ### test 4
 > time <- c(rep(2, 20), rep(3, 60), rep(4, 20))
@@ -209,6 +245,8 @@ pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
 age    0.03787388 1.0386002 0.01757588  2.1548779 0.03117139
 creat -0.11270506 0.8934141 0.15786668 -0.7139256 0.47527320
 
+Warning message:
+In sqrt(diag(x$fit$vbeta)) : NaNs produced
 > fit2
 Call:
 pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
@@ -219,6 +257,8 @@ pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
 age    0.03787388 1.0386002 0.01682105  2.2515763 0.02434906
 creat -0.11270506 0.8934141 0.15803655 -0.7131582 0.47574787
 
+Warning message:
+In sqrt(diag(x$fit$vbeta)) : NaNs produced
 > 
 > summary(fit1)
 Call:
@@ -235,6 +275,8 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 age      1.0386     0.9628    1.0034     1.075
 creat    0.8934     1.1193    0.6557     1.217
 
+Warning message:
+In sqrt(diag(object$fit$vbeta)) : NaNs produced
 > summary(fit2)
 Call:
 pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
@@ -251,6 +293,8 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 age      1.0386     0.9628    1.0034     1.075
 creat    0.8934     1.1193    0.6557     1.217
 
+Warning message:
+In sqrt(diag(object$fit$vbeta)) : NaNs produced
 >        
 > 
 > ### test 6: playing with cens.conde
@@ -337,4 +381,7 @@ creat    0.8934     1.1193    0.6557     1.217
       coef exp(coef) se(coef)    w Pr(>|w|)
 age   TRUE      TRUE     TRUE TRUE     TRUE
 creat TRUE      TRUE     TRUE TRUE     TRUE
+Warning messages:
+1: In sqrt(diag(object$fit$vbeta)) : NaNs produced
+2: In sqrt(diag(object$fit$vbeta)) : NaNs produced
 > 

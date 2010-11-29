@@ -51,8 +51,8 @@ pseudocpf <- function(formula, data, id, subset, na.action, timepoints,
     names(dat)[4:dim(dat)[2]] <- colnames(cov)
     
     newf <- update(formula, pseudo ~ factor(time) + .)
-    fit <- geese(newf, id = id, data = dat, family = gaussian,
-                 mean.link = "logit", ...)
+    fit <- geepack::geese(newf, id = id, data = dat, family = gaussian,
+                          mean.link = "logit", ...)
     
     zzz <- list(fit = fit, pseudo = psd, timepoints = timepoints, call = call)
     class(zzz) <- "pseudocpf"

@@ -1,5 +1,4 @@
 import(lattice, tpr, prodlim)
-require(geepack)
 export(cpf, cpfpo, summary.cpf, pseudocpf, summary.pseudocpf)
 S3method(print, cpf)
 S3method(summary, cpf)
