@@ -22,9 +22,9 @@ pseudocpf <- function(formula, data, id, subset, na.action, timepoints,
     time <- response[, "time"]
     states <- attr(response, "states")
     id <- model.extract(m, "id")
-    event <- factor(event)
+    event <- factor(event, order = TRUE)
     cc <- attr(response, "cens.code")
-    levels(event) <- c(cc, states)
+    levels(event) <- c(states, cc)
     daten <- data.frame(id, event, time)
     tmax <- max(daten$time) + 10^-3
     n <- nrow(daten)

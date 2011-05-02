@@ -62,9 +62,11 @@ Maintainer: Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
   J.P. Fine, J. Yan and M.R. Kosorok (2004). Temporal Process
   Regression, \emph{Biometrika}, 91(3):683-703.
   
-  A. Allignol, A. Latouche, J. Yan and J.P. Fine, 
-  A Propotional-Odds Model for the Conditional
-  Probability Function of a Competing Risk. Submitted
+  A. Allignol, A. Latouche, J. Yan and J.P. Fine (2011).  A regression
+  model for the conditional probability of a competing event:
+  application to monoclonal gammopathy of unknown significance.
+  \emph{Journal of the Royal Statistical Society: Series C},
+  60(1):135--142.
 
   P.K. Andersen, J.P. Klein and S. Rosthoj (2003). Generalised Linear Models
   for Correlated Pseudo-Observations, with Applications to Multi-State

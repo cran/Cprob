@@ -1,7 +1,8 @@
 
-R version 2.11.1 (2010-05-31)
-Copyright (C) 2010 The R Foundation for Statistical Computing
+R version 2.13.0 (2011-04-13)
+Copyright (C) 2011 The R Foundation for Statistical Computing
 ISBN 3-900051-07-0
+Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -30,43 +31,7 @@ Loading required package: lgtdl
 Loading required package: lattice
 Loading required package: geepack
 Loading required package: doBy
-Loading required package: contrast
-Loading required package: Design
-Loading required package: Hmisc
-
-Attaching package: 'Hmisc'
-
-The following object(s) are masked from 'package:survival':
-
-    untangle.specials
-
-The following object(s) are masked from 'package:base':
-
-    format.pval, round.POSIXt, trunc.POSIXt, units
-
-Design library by Frank E Harrell Jr
-
-Type library(help='Design'), ?DesignOverview, or ?Design.Overview')
-to see overall documentation.
-
-
-Attaching package: 'Design'
-
-The following object(s) are masked from 'package:Hmisc':
-
-    strgraphwrap
-
-The following object(s) are masked from 'package:survival':
-
-    Surv
-
-
-Attaching package: 'contrast'
-
-The following object(s) are masked from 'package:Design':
-
-    contrast
-
+Loading required package: R2HTML
 > 
 > ### test 1
 > data(mgus)
@@ -232,9 +197,11 @@ creat        0.19314357 1.21305693 0.75242697  0.1301027 0.8964852
 > 
 > fit1 <- pseudocpf(Hist(time, ev) ~ age + creat, mgus, id = id, timep = cutoffs,
 +                  corstr = "independence", scale.value = TRUE)
+There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > fit2 <- pseudocpf(Hist(time, ev) ~ age + creat, mgus, id = id, timep = cutoffs,
 +                  corstr = "independence", scale.value = TRUE, jack = TRUE)
+There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > fit1
 Call:
@@ -303,6 +270,7 @@ In sqrt(diag(object$fit$vbeta)) : NaNs produced
 > 
 > test1 <- pseudocpf(Hist(time, ev, cens.code = "4") ~ age + creat, mm, id = id, timep = cutoffs,
 +                    corstr = "independence", scale.value = TRUE)
+There were 50 or more warnings (use warnings() to see the first 50)
 > 
 > test2 <- cpfpo(Hist(time, ev, cens.code = "4") ~ age + creat, mm,
 +                tis=seq(10, 30, 0.3), w=rep(1,67))

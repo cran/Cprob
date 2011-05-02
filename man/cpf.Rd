@@ -68,9 +68,11 @@ cpf(formula, data, subset, na.action, conf.int = 0.95, failcode)
   summarizing competing risks failure time data? \emph{Statistics in
     Medicine}, 12(8):737--751.
   
-  A. Allignol, A. Latouche, J. Yan and J.P. Fine, 
-  A Propotional-Odds Model for the Conditional
-  Probability Function of a Competing Risk. Submitted
+  A. Allignol, A. Latouche, J. Yan and J.P. Fine (2011).  A regression
+  model for the conditional probability of a competing event:
+  application to monoclonal gammopathy of unknown significance.
+  \emph{Journal of the Royal Statistical Society: Series C},
+  60(1):135--142.
 }
 \author{Arthur Allignol, \email{arthur.allignol@fdm.uni-freiburg.de}}
 

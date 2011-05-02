@@ -1,7 +1,14 @@
+2011-2-5 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
+
+	* new version number 1.2.1
+	* cpfpo and pseudocpf: Bug fix
+	* tests: rerun of the .save file
+
 2010-29-11 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
 
 	* New version number 1.2
 	* NAMESPACE: Bug fix
+	* pseudocpf: explicit call to geepack::geese
 
 2010-02-11 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
 

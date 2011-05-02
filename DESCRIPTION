@@ -1,6 +1,6 @@
 Package: Cprob
 Title: Conditional probability function of a competing event
-Version: 1.2
+Version: 1.2.1
 Author: Arthur Allignol
 Description: Estimates the conditional probability function of a
         competing event, and fits, using the temporal process
@@ -9,6 +9,6 @@ Description: Estimates the conditional probability function of a
 Maintainer: Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
 Depends: prodlim, tpr, lattice, geepack
 License: GPL (>= 2)
-Packaged: 2010-11-29 11:29:02 UTC; arthur
+Packaged: 2011-05-02 16:17:32 UTC; arthur
 Repository: CRAN
-Date/Publication: 2010-11-29 20:20:06
+Date/Publication: 2011-05-02 16:52:11
