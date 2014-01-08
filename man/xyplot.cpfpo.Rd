@@ -57,7 +57,7 @@
   \code{\link[lattice]{xyplot}} for further details.
 }
 \author{
- Arthur Allignol, \email{arthur.allignol@fdm.uni-freiburg.de}
+ Arthur Allignol, \email{arthur.allignol@uni-ulm.de}
 }
 \seealso{
   \code{\link{cpfpo}}, \code{\link[lattice]{xyplot}}

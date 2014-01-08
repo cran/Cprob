@@ -1,7 +1,7 @@
 require(Cprob)
 
 ### test 1
-data(mgus)
+data(mgus, package = "Cprob")
 
 aa <- cpf(Hist(time, ev) ~ 1, mgus)
 

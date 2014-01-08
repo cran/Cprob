@@ -2,7 +2,7 @@ pseudocpf <- function(formula, data, id, subset, na.action, timepoints,
                       failcode = 1, ...) {
                       
     call <- match.call()
-    m <- match.call(expand = FALSE)
+    m <- match.call(expand.dots = FALSE)
     temp <- c("", "formula", "data", "id", "subset", "na.action")
     m <- m[match(temp, names(m), nomatch = 0)]
     Terms <- if (missing(data)) terms(formula)
@@ -22,7 +22,7 @@ pseudocpf <- function(formula, data, id, subset, na.action, timepoints,
     time <- response[, "time"]
     states <- attr(response, "states")
     id <- model.extract(m, "id")
-    event <- factor(event, order = TRUE)
+    event <- factor(event, ordered = TRUE)
     cc <- attr(response, "cens.code")
     levels(event) <- c(states, cc)
     daten <- data.frame(id, event, time)

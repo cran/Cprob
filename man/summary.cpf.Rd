@@ -25,7 +25,7 @@
   \item{X}{Covariate's name and levels}
   \item{z, p}{Test statistic and p value}
 }
-\author{arthur allignol, \email{arthur.allignol@fdm.uni-freiburg.de}}
+\author{arthur allignol, \email{arthur.allignol@uni-ulm.de}}
 \seealso{\code{\link{cpf}}}
 \keyword{survival}
 \keyword{print}

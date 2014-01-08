@@ -62,7 +62,7 @@ cpfpo(formula, data, subset, na.action, failcode, tis, w, ...)
   \emph{Journal of the Royal Statistical Society: Series C},
   60(1):135--142.
 }
-\author{Arthur Allignol, \email{arthur.allignol@fdm.uni-freiburg.de}}
+\author{Arthur Allignol, \email{arthur.allignol@uni-ulm.de}}
 \note{
   As the returned value is also a \code{tpr} object, all the methods
   defined in the \pkg{tpr} package are available.
@@ -78,7 +78,9 @@ fit.cpfpo <- cpfpo(Hist(time, ev)~factor(A) + creat,
                    data = mgus, tis=seq(10, 30, 0.3),
                    w=rep(1,67))
 ## and plot the odds-ratios
+if(require("lattice")) {
 xyplot(fit.cpfpo, scales = list(relation = "free"), layout = c(3, 1))
+}
 }
 \keyword{survival}
 \keyword{regression}

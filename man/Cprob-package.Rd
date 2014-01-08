@@ -52,7 +52,7 @@ latter uses the pseudo value technique.
 \author{
 Arthur Allignol
 
-Maintainer: Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
+Maintainer: Arthur Allignol <arthur.allignol@uni-ulm.de>
 }
 \references{
   M.S. Pepe and M. Mori, Kaplan-Meier, marginal or conditional probability curves in

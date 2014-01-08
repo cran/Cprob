@@ -1,7 +1,7 @@
 cpfpo <- function(formula, data, subset, na.action, failcode,
                   tis, w, ...) {
     
-    m <- match.call(expand = FALSE)
+    m <- match.call(expand.dots = FALSE)
     temp <- c("", "formula", "data", "subset", "na.action")
     m <- m[match(temp, names(m), nomatch = 0)]
     
@@ -25,7 +25,7 @@ cpfpo <- function(formula, data, subset, na.action, failcode,
     
     if (missing(failcode)) failcode <- states[1]
     
-    event <- factor(event, order = TRUE)
+    event <- factor(event, ordered = TRUE)
     ## levels(event) <- c(attr(response, "cens.code"), states)
     levels(event) <- c(states, attr(response, "cens.code"))
     daten <- data.frame(event, time)

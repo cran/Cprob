@@ -1,3 +1,9 @@
+2013-9-19 Arthur Allignol <arthur.allignol@uni-ulm.de>
+
+	* Update version number to 1.2.2
+	* Tests: rerun the .save file
+	* Cleaning of the namespace	
+
 2011-2-5 Arthur Allignol <arthur.allignol@fdm.uni-freiburg.de>
 
 	* new version number 1.2.1

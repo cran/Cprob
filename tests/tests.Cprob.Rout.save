@@ -1,8 +1,7 @@
 
-R version 2.13.0 (2011-04-13)
-Copyright (C) 2011 The R Foundation for Statistical Computing
-ISBN 3-900051-07-0
-Platform: x86_64-pc-linux-gnu (64-bit)
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-suse-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -21,20 +20,15 @@ Type 'q()' to quit R.
 > require(Cprob)
 Loading required package: Cprob
 Loading required package: prodlim
-Loading required package: KernSmooth
 KernSmooth 2.23 loaded
 Copyright M. P. Wand 1997-2009
-Loading required package: survival
-Loading required package: splines
 Loading required package: tpr
 Loading required package: lgtdl
 Loading required package: lattice
 Loading required package: geepack
-Loading required package: doBy
-Loading required package: R2HTML
 > 
 > ### test 1
-> data(mgus)
+> data(mgus, package = "Cprob")
 > 
 > aa <- cpf(Hist(time, ev) ~ 1, mgus)
 > 
@@ -209,8 +203,8 @@ pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
     id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE)
 
              coef exp(coef)   se(coef)          z          p
-age    0.03787388 1.0386002 0.01757588  2.1548779 0.03117139
-creat -0.11270506 0.8934141 0.15786668 -0.7139256 0.47527320
+age    0.03787388 1.0386002 0.01759928  2.1520132 0.03139632
+creat -0.11270506 0.8934141 0.15908985 -0.7084365 0.47867423
 
 Warning message:
 In sqrt(diag(x$fit$vbeta)) : NaNs produced
@@ -233,14 +227,14 @@ pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
     id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE)
 
           coef exp(coef) se(coef)      w Pr(>|w|)  
-age    0.03787   1.03860  0.01758  2.155   0.0312 *
-creat -0.11271   0.89341  0.15787 -0.714   0.4753  
+age    0.03787   1.03860  0.01760  2.152   0.0314 *
+creat -0.11271   0.89341  0.15909 -0.708   0.4787  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
       exp(coef) exp(-coef) lower .95 upper .95
 age      1.0386     0.9628    1.0034     1.075
-creat    0.8934     1.1193    0.6557     1.217
+creat    0.8934     1.1193    0.6541     1.220
 
 Warning message:
 In sqrt(diag(object$fit$vbeta)) : NaNs produced
@@ -254,11 +248,11 @@ pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
 age    0.03787   1.03860  0.01682  2.252   0.0243 *
 creat -0.11271   0.89341  0.15804 -0.713   0.4757  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
       exp(coef) exp(-coef) lower .95 upper .95
 age      1.0386     0.9628    1.0034     1.075
-creat    0.8934     1.1193    0.6557     1.217
+creat    0.8934     1.1193    0.6541     1.220
 
 Warning message:
 In sqrt(diag(object$fit$vbeta)) : NaNs produced
@@ -353,3 +347,6 @@ Warning messages:
 1: In sqrt(diag(object$fit$vbeta)) : NaNs produced
 2: In sqrt(diag(object$fit$vbeta)) : NaNs produced
 > 
+> proc.time()
+   user  system elapsed 
+  5.702   0.033   5.722 

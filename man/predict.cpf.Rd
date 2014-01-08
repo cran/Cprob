@@ -25,7 +25,7 @@
   \item{group}{Group, if any}
   
 }
-\author{Arthur Allgnol, \email{arthur.allignol@fdm.uni-freiburg.de}}
+\author{Arthur Allgnol, \email{arthur.allignol@uni-ulm.de}}
 \seealso{\code{\link{cpf}}}
 \examples{
 data(mgus)

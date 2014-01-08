@@ -7,7 +7,7 @@ cpf <- function(formula, data, subset, na.action, conf.int = 0.95, failcode) {
         environment(formula) <- parent.frame()
     }
 
-    m <- match.call(expand = FALSE)
+    m <- match.call(expand.dots = FALSE)
     m$formula <- formula
     m$failcode <- NULL
     m[[1]] <- as.name("prodlim")

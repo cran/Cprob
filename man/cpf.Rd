@@ -74,7 +74,7 @@ cpf(formula, data, subset, na.action, conf.int = 0.95, failcode)
   \emph{Journal of the Royal Statistical Society: Series C},
   60(1):135--142.
 }
-\author{Arthur Allignol, \email{arthur.allignol@fdm.uni-freiburg.de}}
+\author{Arthur Allignol, \email{arthur.allignol@uni-ulm.de}}
 
 \seealso{\code{\link[prodlim]{Hist}}, \code{\link{print.cpf}},
   \code{\link{summary.cpf}}, \code{\link{plot.survfit}}}

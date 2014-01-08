@@ -29,7 +29,7 @@
   No value returned
 }
 \author{
-  Arthur Allignol, \email{arthur.allignol@fdm.uni-freiburg.de}
+  Arthur Allignol, \email{arthur.allignol@uni-ulm.de}
 }
 \seealso{
   \code{\link{plot.cpf}}
