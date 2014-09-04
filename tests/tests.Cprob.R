@@ -35,8 +35,6 @@ all.equal(bb[1]$cp, bb$cp[1:bb$size.strata[1]])
 fit <- cpfpo(Hist(time, ev) ~ age + creat, mgus,
              tis=seq(10, 30, 0.3), w=rep(1,67))
 
-fit
-
 ### test 4
 time <- c(rep(2, 20), rep(3, 60), rep(4, 20))
 ev <- c(rep(1, 20), rep(2, 60), rep(0, 20))

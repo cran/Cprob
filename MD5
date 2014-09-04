@@ -1,5 +1,5 @@
-0cbeb7eae1acd8fd40ccc066a932686e *ChangeLog
-2143fff002690204ee2f27755bf3dde0 *DESCRIPTION
+dd1b2c0ef6e0a0a72f0ce20d189830fa *ChangeLog
+884f7881781d76ea696c4d01cfe5da13 *DESCRIPTION
 6790710ae6db1e66bf0759fb7ac35774 *NAMESPACE
 6b44cb225db35a23635888a75f185a77 *R/cpf.R
 f1989df17b8a7701da3f7bdc524588f4 *R/cpfpo.R
@@ -28,5 +28,5 @@ f8e8619ec8d141c0565f002558d09e21 *man/predict.cpf.Rd
 52180b73ed4192363db63ba7820a8100 *man/summary.cpf.Rd
 f03dc6b922da30deeafc70f22c71b106 *man/summary.pseudocpf.Rd
 aa695148bae7fe6cdb7eceb5e7b58010 *man/xyplot.cpfpo.Rd
-a649dca89fb20f71c8a1664d2967fd82 *tests/tests.Cprob.R
-2d22a4b0d3e0e5f9cdc03859d0d13d52 *tests/tests.Cprob.Rout.save
+47fd8c69834777d4b922a59e579b2ce1 *tests/tests.Cprob.R
+ad4944f74a406550c4aca98defd2a9a1 *tests/tests.Cprob.Rout.save

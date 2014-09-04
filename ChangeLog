@@ -1,3 +1,7 @@
+2014-9-4 Arthur Allignol <arthur.allignol@uni-ulm.de>
+
+	* Tests: remove printing of one model; rerun test file
+
 2013-9-19 Arthur Allignol <arthur.allignol@uni-ulm.de>
 
 	* Update version number to 1.2.2

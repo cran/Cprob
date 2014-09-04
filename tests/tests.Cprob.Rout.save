@@ -1,6 +1,6 @@
 
-R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
-Copyright (C) 2013 The R Foundation for Statistical Computing
+R version 3.1.1 (2014-07-10) -- "Sock it to Me"
+Copyright (C) 2014 The R Foundation for Statistical Computing
 Platform: x86_64-suse-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -20,12 +20,6 @@ Type 'q()' to quit R.
 > require(Cprob)
 Loading required package: Cprob
 Loading required package: prodlim
-KernSmooth 2.23 loaded
-Copyright M. P. Wand 1997-2009
-Loading required package: tpr
-Loading required package: lgtdl
-Loading required package: lattice
-Loading required package: geepack
 > 
 > ### test 1
 > data(mgus, package = "Cprob")
@@ -163,19 +157,6 @@ Two sample test:
 > ### test 3
 > fit <- cpfpo(Hist(time, ev) ~ age + creat, mgus,
 +              tis=seq(10, 30, 0.3), w=rep(1,67))
-> 
-> fit
-Test for non-significant effect 
-                  stat     pvalue
-(Intercept) -2.3812434 0.01725431
-age          2.1493465 0.03160695
-creat        0.2566941 0.79741492
-
- Test for constant fit 
-                   coef   exp.coef    SE.coef       stat    pvalue
-(Intercept) -3.17296435 0.04187927 1.33248215  0.2465093 0.8052880
-age          0.04224328 1.04314823 0.01965401 -0.6819222 0.4952882
-creat        0.19314357 1.21305693 0.75242697  0.1301027 0.8964852
 > 
 > ### test 4
 > time <- c(rep(2, 20), rep(3, 60), rep(4, 20))
@@ -349,4 +330,4 @@ Warning messages:
 > 
 > proc.time()
    user  system elapsed 
-  5.702   0.033   5.722 
+  4.709   0.034   4.729 
