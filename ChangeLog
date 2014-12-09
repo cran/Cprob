@@ -1,3 +1,11 @@
+2014-12-9 Arthur Allignol <arthur.allignol@uni-ulm.de>
+
+	* summary and print methods: A slight modification in se construction 
+	to avoid useless warnings
+	* tests: - options(warn=1) set as per Brian Ripley's request
+		 - removed some tests that (purposedly) triggered warnings
+		 - all() statements added
+
 2014-9-4 Arthur Allignol <arthur.allignol@uni-ulm.de>
 
 	* Tests: remove printing of one model; rerun test file

@@ -1,5 +1,5 @@
-dd1b2c0ef6e0a0a72f0ce20d189830fa *ChangeLog
-884f7881781d76ea696c4d01cfe5da13 *DESCRIPTION
+dca54694e1a4b4c683ccb5784e612d7d *ChangeLog
+6c6825dc30435864f40b2ca78841dd6b *DESCRIPTION
 6790710ae6db1e66bf0759fb7ac35774 *NAMESPACE
 6b44cb225db35a23635888a75f185a77 *R/cpf.R
 f1989df17b8a7701da3f7bdc524588f4 *R/cpfpo.R
@@ -8,11 +8,11 @@ f1989df17b8a7701da3f7bdc524588f4 *R/cpfpo.R
 87d3d4ac91140edb823f3693c3ebfba5 *R/predict.cpf.R
 04ad83086e17e65c8a3caf52f98dcf4a *R/print.cpf.R
 88c990cf05463f0412d3e03d8f63da42 *R/print.cpfpo.R
-8c67b98fc900d148f1fea49d9a4fbf92 *R/print.pseudocpf.R
+113ce372cdb1be0acc9a7fb1d416bbb3 *R/print.pseudocpf.R
 8331b262833b3b41b94391106171c941 *R/print.summary.cpf.R
 e2fc201f21103186c2e2b72db2b2d69b *R/pseudocpf.R
 18abb0fa0524fe71b7c563aa06298c24 *R/summary.cpf.R
-90accc6d62c6dbcccb0be96347f1dcd4 *R/summary.pseudocpf.R
+d93d8389504ebb53081e469c24211189 *R/summary.pseudocpf.R
 0108c60876e4cf3182ab84f8e4bf0813 *R/xyplot.cpfpo.R
 b2bcf94a987f374ea7ec8b8f079efa95 *data/mgus.txt.gz
 41b914ee1f5e28bc54da30d4dc4985b9 *man/Cprob-package.Rd
@@ -28,5 +28,5 @@ f8e8619ec8d141c0565f002558d09e21 *man/predict.cpf.Rd
 52180b73ed4192363db63ba7820a8100 *man/summary.cpf.Rd
 f03dc6b922da30deeafc70f22c71b106 *man/summary.pseudocpf.Rd
 aa695148bae7fe6cdb7eceb5e7b58010 *man/xyplot.cpfpo.Rd
-47fd8c69834777d4b922a59e579b2ce1 *tests/tests.Cprob.R
-ad4944f74a406550c4aca98defd2a9a1 *tests/tests.Cprob.Rout.save
+452184f5bcaf7e910cb12b83af7d0090 *tests/tests.Cprob.R
+0a2d692ab42325f0f0371240bae5c464 *tests/tests.Cprob.Rout.save

@@ -6,7 +6,7 @@ print.pseudocpf <- function(x, ...) {
     dput(x$call); cat("\n")
     nt <- length(x$timepoints)
     coef <- x$fit$beta[-(1:nt)]
-    se <- sqrt(diag(x$fit$vbeta))[-(1:nt)]
+    se <- sqrt(diag(x$fit$vbeta)[-(1:nt)])
     se.ajs <- sqrt(diag(x$fit$vbeta.ajs))[-(1:nt)]
     if (all(se.ajs == 0)) {
         tmp <- cbind(coef, exp(coef), se, coef / se,

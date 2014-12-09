@@ -6,8 +6,8 @@ summary.pseudocpf <- function(object, conf.int = 0.95, scale = 1, ...) {
     zzz <- list()
     zzz$call <- object$call
     beta <- object$fit$beta[-(1:nt)]
-    se.beta <- sqrt(diag(object$fit$vbeta))[-(1:nt)]
-    se.beta.ajs <- sqrt(diag(object$fit$vbeta.ajs))[-(1:nt)]
+    se.beta <- sqrt(diag(object$fit$vbeta)[-(1:nt)])
+    se.beta.ajs <- sqrt(diag(object$fit$vbeta.ajs)[-(1:nt)])
     if (all(se.beta.ajs == 0)) {
         tmp <- cbind(beta, exp(beta), se.beta, beta / se.beta,
                      1 - pchisq((beta/ se.beta)^2, 1))

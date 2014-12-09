@@ -1,5 +1,8 @@
 require(Cprob)
 
+op <- options()
+options(warn = 1)
+
 ### test 1
 data(mgus, package = "Cprob")
 
@@ -8,14 +11,6 @@ aa <- cpf(Hist(time, ev) ~ 1, mgus)
 aa
 
 summary(aa)
-
-aa[]
-
-all.equal(aa[]$cp, aa$cp)
-
-all.equal(aa[1]$cp, aa$cp)
-
-aa[c(1, 2)]
 
 ### test 2
 mgus$A <- ifelse(mgus$age < 64, 0, 1)
@@ -57,9 +52,9 @@ fit2
 
 summary(fit1)
 summary(fit2)
-       
 
-### test 6: playing with cens.conde
+
+### test 6: playing with cens.code
 mm <- mgus
 mm$ev <- ifelse(mm$ev == 0, 4, mm$ev)
 
@@ -69,6 +64,8 @@ test1 <- pseudocpf(Hist(time, ev, cens.code = "4") ~ age + creat, mm, id = id, t
 test2 <- cpfpo(Hist(time, ev, cens.code = "4") ~ age + creat, mm,
                tis=seq(10, 30, 0.3), w=rep(1,67))
 
-test2$alpha == fit$alpha
+all(test2$alpha == fit$alpha)
 
-summary(test1)$coef == summary(fit1)$coef
+all(summary(test1)$coef == summary(fit1)$coef)
+
+options(op)
