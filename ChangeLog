@@ -1,3 +1,8 @@
+2017-1-16 Arthur Allignol <arthur.allignol@uni-ulm.de>
+
+	* Remove 2 sample tests from cpf. Use the regression functions if you need to compare groups
+	* import stats and graphs
+
 2014-12-9 Arthur Allignol <arthur.allignol@uni-ulm.de>
 
 	* summary and print methods: A slight modification in se construction 

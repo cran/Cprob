@@ -29,7 +29,7 @@ summary.cpf <- function(object, ...) {
         })
         names(temp) <- cova
     }
-    res <- list(est = temp, call = object$call, X = object$X, z = object$z, p = object$p)
+    res <- list(est = temp, call = object$call, X = object$X)
     class(res) <- "summary.cpf"
     res
 }

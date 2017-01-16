@@ -11,7 +11,7 @@ cpf <- function(formula, data, subset, na.action, conf.int = 0.95, failcode) {
     m$formula <- formula
     m$failcode <- NULL
     m[[1]] <- as.name("prodlim")
-    fit <- eval(m, parent.frame())
+    fit <- eval.parent(m)
     if (attr(fit$model.response, "model") != "competing.risks")
         stop("This is not competing risks data")
     if (attr(fit$model.response, "cens.type") != "rightCensored")
@@ -68,83 +68,82 @@ cpf <- function(formula, data, subset, na.action, conf.int = 0.95, failcode) {
     upper <- cp + qnorm(1 - level/2) * sqrt(var.cp)
     lower <- cp - qnorm(1 - level/2) * sqrt(var.cp)
 
-    if (length(fit$size.strata) == 2) {
-        max.times <- min(fit$time[cumsum(fit$size.strata)])
-        times <- sort(unique(fit$time[fit$time <= max.times]))
-        ind.G1 <- 1:fit$size.strata[1]
-        ind.G2 <- (fit$size.strata[1] + 1):sum(fit$size.strata)
-        ind1 <- 1:length(times)
-        ind2 <- (length(times) + 1):(2 * length(times))
+    ## if (length(fit$size.strata) == 2) {
+    ##     max.times <- min(fit$time[cumsum(fit$size.strata)])
+    ##     times <- sort(unique(fit$time[fit$time <= max.times]))
+    ##     ind.G1 <- 1:fit$size.strata[1]
+    ##     ind.G2 <- (fit$size.strata[1] + 1):sum(fit$size.strata)
+    ##     ind1 <- 1:length(times)
+    ##     ind2 <- (length(times) + 1):(2 * length(times))
         
-        ## censoring distribution
-        n.group <- fit$n.risk[c(1, fit$size.strata[1] + 1)]
-        cens.distr <- c(cumprod((fit$n.risk[ind.G1] - fit$n.lost[ind.G1]) / fit$n.risk[ind.G1]),
-                        cumprod((fit$n.risk[ind.G2] - fit$n.lost[ind.G2]) / fit$n.risk[ind.G2]))
-        cens.distr <- c(1, cens.distr[-length(cens.distr)])
-        cens.distr[size[-length(size)]] <- 1
-        ind.time1 <- findInterval(times, fit$time[ind.G1])
-        ind.time2 <- findInterval(times, fit$time[ind.G2])
-        t.cp <- c(ifelse(ind.time1 == 0, 0, cp[ind.G1][ind.time1]),
-                  ifelse(ind.time2 == 0, 0, cp[ind.G2][ind.time2]))
-        t.cens.distr <- c(ifelse(ind.time1 == 0, 0, cens.distr[ind.G1][ind.time1]),
-                          ifelse(ind.time2 == 0, 0, cens.distr[ind.G2][ind.time2]))
+    ##     ## censoring distribution
+    ##     n.group <- fit$n.risk[c(1, fit$size.strata[1] + 1)]
+    ##     cens.distr <- c(cumprod((fit$n.risk[ind.G1] - fit$n.lost[ind.G1]) / fit$n.risk[ind.G1]),
+    ##                     cumprod((fit$n.risk[ind.G2] - fit$n.lost[ind.G2]) / fit$n.risk[ind.G2]))
+    ##     cens.distr <- c(1, cens.distr[-length(cens.distr)])
+    ##     cens.distr[size[-length(size)]] <- 1
+    ##     ind.time1 <- findInterval(times, fit$time[ind.G1])
+    ##     ind.time2 <- findInterval(times, fit$time[ind.G2])
+    ##     t.cp <- c(ifelse(ind.time1 == 0, 0, cp[ind.G1][ind.time1]),
+    ##               ifelse(ind.time2 == 0, 0, cp[ind.G2][ind.time2]))
+    ##     t.cens.distr <- c(ifelse(ind.time1 == 0, 0, cens.distr[ind.G1][ind.time1]),
+    ##                       ifelse(ind.time2 == 0, 0, cens.distr[ind.G2][ind.time2]))
         
-        ## test
-        weight <- t.cens.distr[ind1] * t.cens.distr[ind2] /
-            ((n.group[1] / n) * t.cens.distr[ind1] + (n.group[2] / n) + t.cens.distr[ind2])
-        wcp <- sqrt(n.group[1] * n.group[2] / (n.group[1] + n.group[2])) *
-            sum(weight * (t.cp[ind1] - t.cp[ind2]))
+    ##     ## test
+    ##     weight <- t.cens.distr[ind1] * t.cens.distr[ind2] /
+    ##         ((n.group[1] / n) * t.cens.distr[ind1] + (n.group[2] / n) * t.cens.distr[ind2])
+    ##     wcp <- sqrt(n.group[1] * n.group[2] / (n.group[1] + n.group[2])) *
+    ##         sum(weight * (t.cp[ind1] - t.cp[ind2]))
         
-        ## test's variance
-        t.surv <- c(ifelse(ind.time1 == 0, 1, fit$surv[ind.G1][ind.time1]),
-                    ifelse(ind.time2 == 0, 1, fit$surv[ind.G2][ind.time2]))
-        t.cif <- c(ifelse(ind.time1 == 0, 0, fit$cuminc[[ind]][ind.G1][ind.time1]),
-                   ifelse(ind.time2 == 0, 0, fit$cuminc[[ind]][ind.G2][ind.time2]))
-        t.cif.other <- c(ifelse(ind.time1 == 0, 0, cif.other[ind.G1][ind.time1]),
-                         ifelse(ind.time2 == 0, 0, cif.other[ind.G2][ind.time2]))
-        t.n.event <- c(ifelse(ind.time1 == 0, 0, fit$n.event[[ind]][ind.G1][ind.time1]),
-                       ifelse(ind.time2 == 0, 0, fit$n.event[[ind]][ind.G2][ind.time2]))
-        t.n.event.other <- c(ifelse(ind.time1 == 0, 0, n.event.other[ind.G1][ind.time1]),
-                             ifelse(ind.time2 == 0, 0, n.event.other[ind.G2][ind.time2]))
-        t.n.risk <- c(ifelse(ind.time1 == 0, n.group[1], fit$n.risk[ind.G1][ind.time1]),
-                      ifelse(ind.time2 == 0, n.group[2], fit$n.risk[ind.G2][ind.time2]))
+    ##     ## test's variance
+    ##     t.surv <- c(ifelse(ind.time1 == 0, 1, fit$surv[ind.G1][ind.time1]),
+    ##                 ifelse(ind.time2 == 0, 1, fit$surv[ind.G2][ind.time2]))
+    ##     t.cif <- c(ifelse(ind.time1 == 0, 0, fit$cuminc[[ind]][ind.G1][ind.time1]),
+    ##                ifelse(ind.time2 == 0, 0, fit$cuminc[[ind]][ind.G2][ind.time2]))
+    ##     t.cif.other <- c(ifelse(ind.time1 == 0, 0, cif.other[ind.G1][ind.time1]),
+    ##                      ifelse(ind.time2 == 0, 0, cif.other[ind.G2][ind.time2]))
+    ##     t.n.event <- c(ifelse(ind.time1 == 0, 0, fit$n.event[[ind]][ind.G1][ind.time1]),
+    ##                    ifelse(ind.time2 == 0, 0, fit$n.event[[ind]][ind.G2][ind.time2]))
+    ##     t.n.event.other <- c(ifelse(ind.time1 == 0, 0, n.event.other[ind.G1][ind.time1]),
+    ##                          ifelse(ind.time2 == 0, 0, n.event.other[ind.G2][ind.time2]))
+    ##     t.n.risk <- c(ifelse(ind.time1 == 0, n.group[1], fit$n.risk[ind.G1][ind.time1]),
+    ##                   ifelse(ind.time2 == 0, n.group[2], fit$n.risk[ind.G2][ind.time2]))
 
-        int1 <- intt(weight, t.surv[ind1], t.cif.other[ind1], times)
-        int2 <- intt(weight, t.surv[ind2], t.cif.other[ind2], times)
+    ##     int1 <- intt(weight, t.surv[ind1], t.cif.other[ind1], times)
+    ##     int2 <- intt(weight, t.surv[ind2], t.cif.other[ind2], times)
         
-        sigma.wcp <- c(sum(int1^2 * ((1 - t.cif.other[ind1])^2 * t.n.event[ind1] +
-                                 t.cif[ind1]^2 * t.n.event.other[ind1]) /
-                       (t.n.risk[ind1] * (t.n.risk[ind1] - 1)), na.rm = TRUE),
-                       sum(int2^2 * ((1 - t.cif.other[ind2])^2 * t.n.event[ind2] +
-                                 t.cif[ind2]^2 * t.n.event.other[ind2]) /
-                       (t.n.risk[ind2] * (t.n.risk[ind2] - 1)), na.rm = TRUE))
-        var.wcp <- (n.group[2] / n) * n*sigma.wcp[1] + (n.group[1] / n) * n*sigma.wcp[2]
+    ##     sigma.wcp <- c(sum(int1^2 * ((1 - t.cif.other[ind1])^2 * t.n.event[ind1] +
+    ##                              t.cif[ind1]^2 * t.n.event.other[ind1]) /
+    ##                    (t.n.risk[ind1] * (t.n.risk[ind1] - 1)), na.rm = TRUE),
+    ##                    sum(int2^2 * ((1 - t.cif.other[ind2])^2 * t.n.event[ind2] +
+    ##                              t.cif[ind2]^2 * t.n.event.other[ind2]) /
+    ##                    (t.n.risk[ind2] * (t.n.risk[ind2] - 1)), na.rm = TRUE))
+    ##     var.wcp <- (n.group[2] / n) * n*sigma.wcp[1] + (n.group[1] / n) * n*sigma.wcp[2]
         
-        z <- wcp / sqrt(var.wcp)
-        pvalue <- 2 * pnorm(-abs(z))
+    ##     z <- wcp / sqrt(var.wcp)
+    ##     pvalue <- 2 * pnorm(-abs(z))
 
-        strata <- paste(colnames(fit$X), fit$X[, ], sep = "=")
+    ##     strata <- paste(colnames(fit$X), fit$X[, ], sep = "=")
 
-        zzz <- list(cp = cp, var = var.cp, time = fit$time, lower = lower,
-                    upper = upper, n.risk = fit$n.risk,
-                    n.event = n.event, n.lost = fit$n.lost, size.strata = fit$size.strata,
-                    X = fit$X, strata = strata, call = call, z = z, p = pvalue, failcode = failcode)
-        class(zzz) <- "cpf"
-    }
+    ##     zzz <- list(cp = cp, var = var.cp, time = fit$time, lower = lower,
+    ##                 upper = upper, n.risk = fit$n.risk,
+    ##                 n.event = n.event, n.lost = fit$n.lost, size.strata = fit$size.strata,
+    ##                 X = fit$X, strata = strata, call = call, z = z, p = pvalue, failcode = failcode)
+    ##     class(zzz) <- "cpf"
+    ## }
     
-    else {
-        if (length(fit$size.strata) > 2) {
-            warning("The test is only available for comparing 2 samples")
-        }
+    ## else {
+    ##     if (length(fit$size.strata) > 2) {
+    ##         warning("The test is only available for comparing 2 samples")
+    ##     }
 
-        strata <- paste(colnames(fit$X), fit$X[, ], sep = "=")
+    strata <- paste(colnames(fit$X), fit$X[, ], sep = "=")
         
-        zzz <- list(cp = cp, var = var.cp, time = fit$time, lower = lower,
-                    upper = upper, n.risk = fit$n.risk,
-                    n.event = n.event, n.lost = fit$n.lost, size.strata = fit$size.strata,
-                    X = fit$X, strata = strata, call = call, z = NULL, p = NULL, failcode = failcode)
-        class(zzz) <- "cpf"
-    }
+    zzz <- list(cp = cp, var = var.cp, time = fit$time, lower = lower,
+                upper = upper, n.risk = fit$n.risk,
+                n.event = n.event, n.lost = fit$n.lost, size.strata = fit$size.strata,
+                X = fit$X, strata = strata, call = call, failcode = failcode)
+    class(zzz) <- "cpf"
     
     return(zzz)
     

@@ -1,5 +1,9 @@
-import(lattice, tpr, geepack, lgtdl, prodlim)
-## importFrom(prodlim, prodlim, Hist)
+import(tpr, geepack, lgtdl, prodlim)
+importFrom("lattice", "xyplot")
+importFrom("graphics", "lines", "plot", "points")
+importFrom("stats", "binomial", "gaussian", "model.extract",
+           "model.matrix", "pchisq", "pnorm", "predict",
+           "printCoefmat", "qnorm", "quantile", "terms", "update")
 export(cpf, cpfpo, summary.cpf, pseudocpf, summary.pseudocpf)
 S3method(print, cpf)
 S3method(summary, cpf)

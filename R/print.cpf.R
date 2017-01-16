@@ -9,11 +9,6 @@ print.cpf <- function(x, ...) {
         cat("Covariate: ", colnames(x$X), "\n")
         cat("\tlevels: ", x$X[,], "\n\n")
     }
-    if (!is.null(x$p)) {
-        cat("Two sample test: \n")
-        cat("\tz: ", x$z, "\n")
-        cat("\tp: ", x$p, "\n\n")
-    }
     Cause <- c(x$failcode, "other", "censored")
     n.event <- c(sum(x$n.event[, 1]), sum(x$n.event[, 2]), sum(x$n.lost))
     print(data.frame(Cause, n.event), row.names = FALSE)

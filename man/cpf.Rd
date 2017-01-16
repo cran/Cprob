@@ -77,7 +77,7 @@ cpf(formula, data, subset, na.action, conf.int = 0.95, failcode)
 \author{Arthur Allignol, \email{arthur.allignol@uni-ulm.de}}
 
 \seealso{\code{\link[prodlim]{Hist}}, \code{\link{print.cpf}},
-  \code{\link{summary.cpf}}, \code{\link{plot.survfit}}}
+  \code{\link{summary.cpf}}}
 \examples{
 data(mgus)
 

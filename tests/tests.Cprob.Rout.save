@@ -1,6 +1,6 @@
 
-R version 3.1.2 (2014-10-31) -- "Pumpkin Helmet"
-Copyright (C) 2014 The R Foundation for Statistical Computing
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
 Platform: x86_64-suse-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -70,10 +70,6 @@ Number of observations:  241
 Covariate:  A 
 	levels:  0 1 
 
-Two sample test: 
-	z:  -0.1990219 
-	p:  0.8422456 
-
     Cause n.event
         1      59
     other     130
@@ -81,10 +77,6 @@ Two sample test:
 > 
 > summary(bb)
 Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
-
-Two sample test: 
-	z:  -0.1990219 
-	p:  0.8422456 
 
 	 A = 0 
            time n.risk n.event n.event.other        cp         var      lower
@@ -218,4 +210,4 @@ creat    0.8934     1.1193    0.6541     1.220
 > 
 > proc.time()
    user  system elapsed 
-  5.758   0.042   5.788 
+  5.616   0.036   5.672 

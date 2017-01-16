@@ -1,6 +1,10 @@
 xyplot.cpfpo <- function(x, data = NULL, conf.int = TRUE, level = 0.95,
                          odds = TRUE, intercept = TRUE, ylab, xlab,
                          lty = c(1,3,3), col = c(1,1,1), ...) {
+
+    if (!requireNamespace("lattice", quietly = TRUE)) {
+        stop("This function requires the 'lattice' package")
+    }
     
     if (!inherits(x, "cpfpo")) {
         stop("'x' must be of class 'cpfpo'")
@@ -35,15 +39,15 @@ xyplot.cpfpo <- function(x, data = NULL, conf.int = TRUE, level = 0.95,
             dat$lower <- exp(dat$lower)
             dat$coef <- exp(dat$coef)
         }
-        aa <- xyplot(coef + lower + upper ~ time | cov, dat, type = "s",
-                     col = col, lty = lty, xlab = xlab, ylab = ylab, ...)
+        aa <- lattice::xyplot(coef + lower + upper ~ time | cov, dat, type = "s",
+                              col = col, lty = lty, xlab = xlab, ylab = ylab, ...)
     }
     else {
         if (odds) {
             with(dat, coef <- exp(coef))
         }
-        aa <- xyplot(coef ~ time | cov, dat, type = "s",
-                     col = col, lty = lty, xlab = xlab, ylab = ylab, ...)
+        aa <- lattice::xyplot(coef ~ time | cov, dat, type = "s",
+                              col = col, lty = lty, xlab = xlab, ylab = ylab, ...)
     }
     
     aa
