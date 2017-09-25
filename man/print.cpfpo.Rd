@@ -19,7 +19,7 @@
   \item{tdep}{Results of the test on the time-dependence of the effects}
   See \code{\link[tpr]{tpr.test}}
 }
-\author{Arthur Allignol, \email{arthur.allignol@uni-ulm.de}
+\author{Arthur Allignol, \email{arthur.allignol@gmail.com}
 }
 \seealso{\code{\link[tpr]{tpr.test}}, \code{\link{cpfpo}}}
 \keyword{print}

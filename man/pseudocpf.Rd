@@ -51,7 +51,7 @@ pseudocpf(formula, data, id, subset, na.action, timepoints,
   Function. \emph{Biometrics}, 61, 223-229.
 }
 \author{
-  Arthur Allignol, \email{arthur.allignol@uni-ulm.de}
+  Arthur Allignol, \email{arthur.allignol@gmail.com}
 }
 \note{
   Besides the estimated regression coefficients, the function returns

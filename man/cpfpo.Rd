@@ -62,7 +62,7 @@ cpfpo(formula, data, subset, na.action, failcode, tis, w, ...)
   \emph{Journal of the Royal Statistical Society: Series C},
   60(1):135--142.
 }
-\author{Arthur Allignol, \email{arthur.allignol@uni-ulm.de}}
+\author{Arthur Allignol, \email{arthur.allignol@gmail.com}}
 \note{
   As the returned value is also a \code{tpr} object, all the methods
   defined in the \pkg{tpr} package are available.

@@ -1,6 +1,6 @@
 
-R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
-Copyright (C) 2016 The R Foundation for Statistical Computing
+R version 3.4.1 (2017-06-30) -- "Single Candle"
+Copyright (C) 2017 The R Foundation for Statistical Computing
 Platform: x86_64-suse-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -48,13 +48,13 @@ Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
 58   6.105407    176       1             0 0.07894737 0.0003865789 0.04041132
 115 11.964408    117       0             1 0.26114650 0.0012493659 0.19186889
 172 19.668720     60       1             0 0.45759193 0.0022183410 0.36527907
-230 34.105407      1       0             0 0.82604991           NA         NA
+230 34.105407      1       0             0 0.82604991          NaN        NaN
         upper
 1   0.0000000
 58  0.1174834
 115 0.3304241
 172 0.5499048
-230        NA
+230       NaN
 
 > 
 > ### test 2
@@ -84,13 +84,13 @@ Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
 30   7.83299110     91       1             0 0.1346154 0.001145166 0.06828962
 59  16.77207392     61       1             0 0.3478261 0.002546966 0.24891165
 88  21.52498289     31       0             0 0.4434477 0.002976608 0.33651538
-118 34.10540726      1       0             0 0.7949134          NA         NA
+118 34.10540726      1       0             0 0.7949134         NaN        NaN
         upper
 1   0.0000000
 30  0.2009411
 59  0.4467405
 88  0.5503800
-118        NA
+118       NaN
 
 	 A = 1 
          time n.risk n.event n.event.other         cp          var        lower
@@ -210,4 +210,4 @@ creat    0.8934     1.1193    0.6541     1.220
 > 
 > proc.time()
    user  system elapsed 
-  5.616   0.036   5.672 
+  6.110   0.027   6.133 

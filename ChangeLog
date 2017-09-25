@@ -1,9 +1,15 @@
-2017-1-16 Arthur Allignol <arthur.allignol@uni-ulm.de>
+2017-1-16 Arthur Allignol <arthur.allignol@gmail.com>
+
+	* Version number to 1.4
+	* email address change
+
+
+2017-1-16 Arthur Allignol <arthur.allignol@gmail.com>
 
 	* Remove 2 sample tests from cpf. Use the regression functions if you need to compare groups
 	* import stats and graphs
 
-2014-12-9 Arthur Allignol <arthur.allignol@uni-ulm.de>
+2014-12-9 Arthur Allignol <arthur.allignol@gmail.com>
 
 	* summary and print methods: A slight modification in se construction 
 	to avoid useless warnings
@@ -11,11 +17,11 @@
 		 - removed some tests that (purposedly) triggered warnings
 		 - all() statements added
 
-2014-9-4 Arthur Allignol <arthur.allignol@uni-ulm.de>
+2014-9-4 Arthur Allignol <arthur.allignol@gmail.com>
 
 	* Tests: remove printing of one model; rerun test file
 
-2013-9-19 Arthur Allignol <arthur.allignol@uni-ulm.de>
+2013-9-19 Arthur Allignol <arthur.allignol@gmail.com>
 
 	* Update version number to 1.2.2
 	* Tests: rerun the .save file
