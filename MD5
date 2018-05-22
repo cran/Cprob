@@ -1,5 +1,5 @@
 747a849168da814bc379a0027c859cd7 *ChangeLog
-79dffc208518b8095137a0829b2e3f9f *DESCRIPTION
+cb17b90a82b958e5696abf8355e0748e *DESCRIPTION
 4f0cc658605e4808078482ee25c8e24b *NAMESPACE
 a0ee3a7caa1441708ee326c402821826 *R/cpf.R
 f1989df17b8a7701da3f7bdc524588f4 *R/cpfpo.R
@@ -16,7 +16,6 @@ d93d8389504ebb53081e469c24211189 *R/summary.pseudocpf.R
 0c3c45c388cb959319dadc30e695cdee *R/xyplot.cpfpo.R
 e7e50ac0213830eba1c399497ef2505d *README.md
 b2bcf94a987f374ea7ec8b8f079efa95 *data/mgus.txt.gz
-e92991f5257c8d1c5412fc06c24a3a6a *man/Cprob-package.Rd
 1dd9276a8dc5e528d43304f9fbb72029 *man/cpf.Rd
 1295cbbe4792ed7183514daf5dbba277 *man/cpfpo.Rd
 1914ab6b4cbdb553ce8fde81e12084f6 *man/lines.cpf.Rd
@@ -30,4 +29,4 @@ d08bdff8156a6e0feacecc4697e9b678 *man/summary.cpf.Rd
 32e67696fec2e42fde4954cb34c0c87b *man/summary.pseudocpf.Rd
 af97b51f7f548b736de32dcab0324cc5 *man/xyplot.cpfpo.Rd
 452184f5bcaf7e910cb12b83af7d0090 *tests/tests.Cprob.R
-fca73c391b5488e7a9f0fea86a6a5c46 *tests/tests.Cprob.Rout.save
+df97495c9b49d64066540c0495ad723e *tests/tests.Cprob.Rout.save

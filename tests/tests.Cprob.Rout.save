@@ -20,29 +20,29 @@ Type 'q()' to quit R.
 > require(Cprob)
 Loading required package: Cprob
 Loading required package: prodlim
-> 
+>
 > op <- options()
 > options(warn = 1)
-> 
+>
 > ### test 1
 > data(mgus, package = "Cprob")
-> 
+>
 > aa <- cpf(Hist(time, ev) ~ 1, mgus)
-> 
+>
 > aa
 Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
 
-Number of observations:  241 
+Number of observations:  241
 
     Cause n.event
         1      59
     other     130
  censored      52
-> 
+>
 > summary(aa)
 Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
 
-	 
+
          time n.risk n.event n.event.other         cp       var.cp      lower
 1    0.000000    241       0             2 0.00000000 0.0000000000 0.00000000
 58   6.105407    176       1             0 0.07894737 0.0003865789 0.04041132
@@ -56,29 +56,29 @@ Call: cpf(formula = Hist(time, ev) ~ 1, data = mgus)
 172 0.5499048
 230       NaN
 
-> 
+>
 > ### test 2
 > mgus$A <- ifelse(mgus$age < 64, 0, 1)
-> 
+>
 > bb <- cpf(Hist(time, ev) ~ A, mgus)
-> 
+>
 > bb
 Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
 
-Number of observations:  241 
+Number of observations:  241
 
-Covariate:  A 
-	levels:  0 1 
+Covariate:  A
+	levels:  0 1
 
     Cause n.event
         1      59
     other     130
  censored      52
-> 
+>
 > summary(bb)
 Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
 
-	 A = 0 
+	 A = 0
            time n.risk n.event n.event.other        cp         var      lower
 1    0.08761123    120       0             1 0.0000000 0.000000000 0.00000000
 30   7.83299110     91       1             0 0.1346154 0.001145166 0.06828962
@@ -92,7 +92,7 @@ Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
 88  0.5503800
 118       NaN
 
-	 A = 1 
+	 A = 1
          time n.risk n.event n.event.other         cp          var        lower
 1    0.000000    121       0             2 0.00000000 0.0000000000  0.000000000
 29   4.969199     87       0             1 0.03370787 0.0003745327 -0.004223017
@@ -106,40 +106,40 @@ Call: cpf(formula = Hist(time, ev) ~ A, data = mgus)
 86  0.50023654
 115        Inf
 
-> 
+>
 > all.equal(bb[]$cp, bb$cp)
 [1] TRUE
 > all.equal(bb[c(1, 2)]$cp, bb$cp)
 [1] TRUE
-> 
+>
 > all.equal(bb[1]$cp, bb$cp[1:bb$size.strata[1]])
 [1] TRUE
-> 
+>
 > ### test 3
 > fit <- cpfpo(Hist(time, ev) ~ age + creat, mgus,
 +              tis=seq(10, 30, 0.3), w=rep(1,67))
-> 
+>
 > ### test 4
 > time <- c(rep(2, 20), rep(3, 60), rep(4, 20))
 > ev <- c(rep(1, 20), rep(2, 60), rep(0, 20))
 > data <- data.frame(time, ev)
-> 
+>
 > a <- predict(cpf(Hist(time, ev) ~ 1, data), 3)$cp
 > all.equal(a, 1/2)
 [1] TRUE
-> 
+>
 > ### test 5
 > cutoffs <- quantile(mgus$time, probs = seq(0, 1, 0.05))[-1]
-> 
+>
 > fit1 <- pseudocpf(Hist(time, ev) ~ age + creat, mgus, id = id, timep = cutoffs,
 +                  corstr = "independence", scale.value = TRUE)
-> 
+>
 > fit2 <- pseudocpf(Hist(time, ev) ~ age + creat, mgus, id = id, timep = cutoffs,
 +                  corstr = "independence", scale.value = TRUE, jack = TRUE)
-> 
+>
 > fit1
 Call:
-pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
     id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE)
 
              coef exp(coef)   se(coef)          z          p
@@ -148,23 +148,23 @@ creat -0.11270506 0.8934141 0.15908985 -0.7084365 0.47867423
 
 > fit2
 Call:
-pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
-    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE, 
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
+    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE,
     jack = TRUE)
 
              coef exp(coef)   se(coef)          z          p
 age    0.03787388 1.0386002 0.01682105  2.2515763 0.02434906
 creat -0.11270506 0.8934141 0.15803655 -0.7131582 0.47574787
 
-> 
+>
 > summary(fit1)
 Call:
-pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
     id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE)
 
-          coef exp(coef) se(coef)      w Pr(>|w|)  
+          coef exp(coef) se(coef)      w Pr(>|w|)
 age    0.03787   1.03860  0.01760  2.152   0.0314 *
-creat -0.11271   0.89341  0.15909 -0.708   0.4787  
+creat -0.11271   0.89341  0.15909 -0.708   0.4787
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -174,13 +174,13 @@ creat    0.8934     1.1193    0.6541     1.220
 
 > summary(fit2)
 Call:
-pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus, 
-    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE, 
+pseudocpf(formula = Hist(time, ev) ~ age + creat, data = mgus,
+    id = id, timepoints = cutoffs, corstr = "independence", scale.value = TRUE,
     jack = TRUE)
 
-          coef exp(coef) se(coef)      w Pr(>|w|)  
+          coef exp(coef) se(coef)      w Pr(>|w|)
 age    0.03787   1.03860  0.01682  2.252   0.0243 *
-creat -0.11271   0.89341  0.15804 -0.713   0.4757  
+creat -0.11271   0.89341  0.15804 -0.713   0.4757
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
@@ -188,26 +188,26 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 age      1.0386     0.9628    1.0034     1.075
 creat    0.8934     1.1193    0.6541     1.220
 
-> 
-> 
+>
+>
 > ### test 6: playing with cens.code
 > mm <- mgus
 > mm$ev <- ifelse(mm$ev == 0, 4, mm$ev)
-> 
+>
 > test1 <- pseudocpf(Hist(time, ev, cens.code = "4") ~ age + creat, mm, id = id, timep = cutoffs,
 +                    corstr = "independence", scale.value = TRUE)
-> 
+>
 > test2 <- cpfpo(Hist(time, ev, cens.code = "4") ~ age + creat, mm,
 +                tis=seq(10, 30, 0.3), w=rep(1,67))
-> 
+>
 > all(test2$alpha == fit$alpha)
 [1] TRUE
-> 
+>
 > all(summary(test1)$coef == summary(fit1)$coef)
 [1] TRUE
-> 
+>
 > options(op)
-> 
+>
 > proc.time()
-   user  system elapsed 
-  6.110   0.027   6.133 
+   user  system elapsed
+  6.110   0.027   6.133
